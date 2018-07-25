@@ -51,18 +51,26 @@ class ItemDetailViewController: UIViewController {
             let value = valueField.text,
             let location = locationField.text else {return}
         
-        if let item = item {
+        guard let item = item else { return }
             if(item.isFavorite==false){
                 itemController?.update(item: item, withName: name, value: value, location: location, isFavorite: true)
             } else {
                 itemController?.update(item: item, withName: name, value: value, location: location, isFavorite: false)
             }
-        }
+    
         
         
          navigationController?.popViewController(animated: true)
         
     }
+    
+    @IBAction func deleteItem(_ sender: Any) {
+        guard let item = item else {return}
+        itemController?.delete(item: item)
+        
+        navigationController?.popViewController(animated: true)
+    }
+    
     
     @IBOutlet weak var setFaveButton: UIButton!
     @IBOutlet weak var heartField: UITextField!

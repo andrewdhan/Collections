@@ -45,4 +45,9 @@ class ItemController {
         
     }
     
+    func delete(item: Item) {
+        guard let index =  items.index(of: item) else {return}
+        items.remove(at: index)
+    }
+    
 }
